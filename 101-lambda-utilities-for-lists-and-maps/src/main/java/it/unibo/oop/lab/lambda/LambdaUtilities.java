@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -90,7 +89,7 @@ public final class LambdaUtilities {
         /*
          * Suggestion: consider Map.merge
          */
-        Map<R, Set<T>> m = new HashMap<>();
+        final Map<R, Set<T>> m = new HashMap<>();
         list.forEach(i -> {
             m.merge(op.apply(i), new HashSet<>(Set.of(i)), (x, y) -> {
                 x.addAll(y);
@@ -118,8 +117,8 @@ public final class LambdaUtilities {
          *
          * Keep in mind that a map can be iterated through its forEach method
          */
-        Map<K, V> m = new HashMap<>();
-        map.forEach((x,y) -> {
+        final Map<K, V> m = new HashMap<>();
+        map.forEach((x, y) -> {
             m.put(x, y.orElse(def.get()));
         });
         return m;
