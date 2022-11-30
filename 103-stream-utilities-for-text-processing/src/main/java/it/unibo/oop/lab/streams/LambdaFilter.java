@@ -38,7 +38,10 @@ public final class LambdaFilter extends JFrame {
         /**
          * Commands.
          */
-        IDENTITY("No modifications", Function.identity());
+        IDENTITY("No modifications", Function.identity()),
+        TOLOWERCASE("To lowercase", String::toLowerCase),
+        COUNTCHARS("Count chars", x -> String.valueOf(x.chars().count())),
+        COUNTLINES("Count lines", x -> String.valueOf(x.lines().count()));
 
         private final String commandName;
         private final Function<String, String> fun;
